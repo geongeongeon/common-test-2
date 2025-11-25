@@ -1,0 +1,33 @@
+name: Bump Version & Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check Version
+        id: semver
+        uses: paulhatch/semantic-version@v5
+        with:
+          tag_prefix: ""
+          major_pattern: "BREAKING CHANGE"
+          minor_pattern: "feat"
+          patch_pattern: "fix"
+          search_commit_body: true
+
+      - name: Push Tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag v${{ steps.semver.outputs.version }}
+          git push origin v${{ steps.semver.outputs.version }}
