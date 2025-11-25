@@ -41,7 +41,9 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build & Publish
-        run: ./gradlew publish
+        run: |
+          echo "Publishing version: $VERSION"
+          ./gradlew publish
         env:
           VERSION: ${{ steps.semver.outputs.version }}
           PACKAGES_URL: ${{ secrets.PACKAGES_URL }}
