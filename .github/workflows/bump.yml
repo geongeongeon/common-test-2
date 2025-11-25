@@ -23,10 +23,10 @@ jobs:
           tag_prefix: ""
           major_pattern: "BREAKING CHANGE"
           minor_pattern: "feat"
-          patch_pattern: "fix"
           search_commit_body: true
+          enable_prerelease_mode: true
 
       - name: Push Tag
         run: |
-          git tag v${{ steps.semver.outputs.version }}
+          git tag ${{ steps.semver.outputs.version }}
           git push https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }} v${{ steps.semver.outputs.version }}
