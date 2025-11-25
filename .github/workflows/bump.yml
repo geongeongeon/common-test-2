@@ -29,4 +29,4 @@ jobs:
       - name: Push Tag
         run: |
           git tag ${{ steps.semver.outputs.version }}
-          git push https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }} v${{ steps.semver.outputs.version }}
+          git push https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }} ${{ steps.semver.outputs.version }}
