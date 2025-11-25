@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'org.sparta'
-version = System.getenv("VERSION") ?: '0.0.2'
+version = System.getenv("VERSION") ?: '0.0.1'
 
 repositories {
     mavenCentral()
