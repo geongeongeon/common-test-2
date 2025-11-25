@@ -27,6 +27,7 @@ jobs:
 
       - name: Push Tag
         run: |
+          echo "Creating and pushing tag: ${{ steps.semver.outputs.version }}"
           git tag ${{ steps.semver.outputs.version }}
           git push https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }} ${{ steps.semver.outputs.version }}
 
