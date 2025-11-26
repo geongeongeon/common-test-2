@@ -1,3 +1,3 @@
 public class ApiResponse {
-	// 7
+	private String message;
 }
